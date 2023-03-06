@@ -21,7 +21,8 @@ bool check(char choice);
 void ex_One();
 int main()
 {
-	setlocale(LC_ALL, "RUS");
+	system("chcp 1251");
+	system("cls");
 	HDC hDC = GetDC(GetConsoleWindow());
 	char choice;
 	bool exit = false;
@@ -71,8 +72,9 @@ void ex_One() {
 	do
 	{
 		system("cls");
-		cout << "\n\n\n\n\n\n\n";
+		cout << "\n\n\n\n\n";
 		cout << "\t\t\t\t\t\t  Построение графиков функции\n";
+
 
 	} while (true);
 }
