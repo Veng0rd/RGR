@@ -71,7 +71,6 @@ void table()
             }
             printf("\t|\t");
 
-
             if (f2[i] == maxF2) // выделение цветом max и min
             {
                 SetConsoleTextAttribute(handle_text, FOREGROUND_GREEN);
