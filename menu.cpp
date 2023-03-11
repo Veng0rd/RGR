@@ -4,10 +4,13 @@
 #include <stdlib.h>
 #include <conio.h>
 #include "menu.h"
+#include "Table.h"
+
 
 #define UP 72
 #define DOWN 80
 #define ESC 27
+#define ENTER 13
 
 HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 using namespace std;
@@ -32,7 +35,7 @@ void menu_start() {
 		case UP://вверх
 			if (active_elem == 0)
 			{
-				active_elem = 5;
+				active_elem = 6;
 				break;
 			}
 			else
@@ -41,7 +44,7 @@ void menu_start() {
 				break;
 			}
 		case DOWN://вниз
-			if (active_elem == 5)
+			if (active_elem == 6)
 			{
 				active_elem = 0;
 				break;
@@ -54,22 +57,20 @@ void menu_start() {
 		case ESC: //exit
 			exit = true;
 			break;
+		case ENTER:
+			switch (active_elem) {
+			case 0:
+				table();
+				break;
+			}
 		}
+		int active_elem = 0;
 	} while (!exit);
-}
-
-void gotoxy(short a, short b)
-{
-	COORD coordinates;
-	coordinates.X = a;
-	coordinates.Y = b;
-	SetConsoleCursorPosition(
-		GetStdHandle(STD_OUTPUT_HANDLE), coordinates);
 }
 
 void print_menu(int active_elem) {
 	cursorVisible(handle);
-	string menu_text[] = { "Расчет функций и построение графика", "Расчет определенного интеграла",
+	string menu_text[] = { "Расчет функций", "Построение графиков", "Расчет определенного интеграла",
 	"Поиск корня уравнения", "Информация об авторе", "Графическая заставка", "Информация о авторе" };
 	int x = 12;
 	int y = 6;
@@ -92,6 +93,15 @@ void print_menu(int active_elem) {
 			cout << "\t\t\t\t\t" << menu_text[i] << "\n";
 		}
 	}
+}
+
+void gotoxy(short a, short b)
+{
+	COORD coordinates;
+	coordinates.X = a;
+	coordinates.Y = b;
+	SetConsoleCursorPosition(
+		GetStdHandle(STD_OUTPUT_HANDLE), coordinates);
 }
 
 int cursorVisible(HANDLE hStdOut) {
