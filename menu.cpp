@@ -5,6 +5,8 @@
 #include <conio.h>
 #include "menu.h"
 #include "Table.h"
+#include "screensaver.h"
+#include "graph.h"
 
 
 #define UP 72
@@ -18,7 +20,7 @@ using namespace std;
 void menu_start();
 void gotoxy(short a, short b);
 void print_menu(int active_elem);
-int cursorVisible(HANDLE hStdOut);
+void cursorVisible(HANDLE hStdOut);
 
 
 void menu_start() {
@@ -28,6 +30,7 @@ void menu_start() {
 	int active_elem = 0;
 	do
 	{
+		SetConsoleTitleA("Μενώ");
 		print_menu(active_elem);
 		int choice = _getch();
 		switch (choice)
@@ -61,6 +64,12 @@ void menu_start() {
 			switch (active_elem) {
 			case 0:
 				table();
+				break;
+			case 5:
+				view_screen();
+				break;
+			case 1:
+				graphic();
 				break;
 			}
 		}
@@ -104,10 +113,9 @@ void gotoxy(short a, short b)
 		GetStdHandle(STD_OUTPUT_HANDLE), coordinates);
 }
 
-int cursorVisible(HANDLE hStdOut) {
+void cursorVisible(HANDLE hStdOut) {
 	CONSOLE_CURSOR_INFO structCursorInfo;
 	GetConsoleCursorInfo(hStdOut, &structCursorInfo);
 	structCursorInfo.bVisible = FALSE;
 	SetConsoleCursorInfo(hStdOut, &structCursorInfo);
-	return 0;
 }

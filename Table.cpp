@@ -20,6 +20,7 @@ void MaxMin(double* f, double* maxF, double* minF);
 void table()
 {
     HDC hDC = GetDC(GetConsoleWindow());
+    SetConsoleTitleA("Расчет функций");
     double dx, x[19], f1[18], f2[18];
     dx = fabs(b - a) / (n - 1);
     x[0] = a;
@@ -50,7 +51,7 @@ void table()
         for (int i = 0; i < n; i++) {
             gotoxy(x_cord, y_cord);
             y_cord += 1;
-            printf("|\t%d\t|\t%.3f\t|\t", i, x[i]);
+            printf("|\t%d\t|\t%.3f\t|\t", i + 1, x[i]);
 
             if (f1[i] == maxF1) // выделение цветом max и min
             {
